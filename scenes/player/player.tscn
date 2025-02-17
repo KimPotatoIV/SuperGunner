@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://c63vjbrcwylqh"]
+
+[ext_resource type="Texture2D" uid="uid://dq8ny2jm54grr" path="res://sprites/tilemap_packed_resized.png" id="1_tn28v"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_v13n4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggnav"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(0, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n1tf"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(0, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faqsk"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(160, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjfuo"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(0, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2oyn"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(80, 320, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgr5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggnav")
+}],
+"loop": true,
+"name": &"idle_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n1tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faqsk")
+}],
+"loop": false,
+"name": &"shoot_r",
+"speed": 50.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjfuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2oyn")
+}],
+"loop": true,
+"name": &"walk_r",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p87wv"]
+radius = 20.0
+height = 54.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e7su"]
+atlas = ExtResource("1_tn28v")
+region = Rect2(240, 320, 80, 80)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_v13n4")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jgr5x")
+animation = &"shoot_r"
+autoplay = "idle_r"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_p87wv")
+
+[node name="FireLSprite2D" type="Sprite2D" parent="."]
+position = Vector2(-75, 15)
+texture = SubResource("AtlasTexture_3e7su")
+flip_h = true
+
+[node name="FireRSprite2D" type="Sprite2D" parent="."]
+position = Vector2(75, 15)
+texture = SubResource("AtlasTexture_3e7su")
+
+[node name="Camera2D" type="Camera2D" parent="."]

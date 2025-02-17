@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://f5obotthwrm6"]
+
+[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_6bl6k"]
+[ext_resource type="Texture2D" uid="uid://dq8ny2jm54grr" path="res://sprites/tilemap_packed_resized.png" id="1_wewqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npilo"]
+atlas = ExtResource("1_wewqy")
+region = Rect2(320, 320, 80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc4v8"]
+size = Vector2(60, 30)
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_6bl6k")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_npilo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mc4v8")

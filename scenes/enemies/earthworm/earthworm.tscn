@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://divb7dvu8a48j"]
+
+[ext_resource type="Script" path="res://scenes/enemies/earthworm/earthworm.gd" id="1_d8gyr"]
+[ext_resource type="Texture2D" uid="uid://dq8ny2jm54grr" path="res://sprites/tilemap_packed_resized.png" id="1_ykths"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kbhk"]
+atlas = ExtResource("1_ykths")
+region = Rect2(400, 400, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb0wu"]
+atlas = ExtResource("1_ykths")
+region = Rect2(480, 400, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlisx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kbhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb0wu")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3mje5"]
+radius = 15.0
+height = 50.0
+
+[node name="Earthworm" type="CharacterBody2D"]
+script = ExtResource("1_d8gyr")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qlisx")
+animation = &"crawl"
+autoplay = "crawl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3mje5")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://duy72tfv2nj8b"]
+
+[ext_resource type="Script" path="res://scenes/enemies/blue_bee/blue_bee.gd" id="1_68nnp"]
+[ext_resource type="Texture2D" uid="uid://dq8ny2jm54grr" path="res://sprites/tilemap_packed_resized.png" id="2_uhvd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0jlj"]
+atlas = ExtResource("2_uhvd4")
+region = Rect2(240, 400, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1u0n"]
+atlas = ExtResource("2_uhvd4")
+region = Rect2(320, 400, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7q11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0jlj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1u0n")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7xtjq"]
+radius = 20.0
+height = 40.0
+
+[node name="BlueBee" type="CharacterBody2D"]
+script = ExtResource("1_68nnp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m7q11")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7xtjq")

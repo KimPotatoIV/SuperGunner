@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://o4myo25pkt4n"]
+
+[ext_resource type="Texture2D" uid="uid://dq8ny2jm54grr" path="res://sprites/tilemap_packed_resized.png" id="1_7ca02"]
+[ext_resource type="Script" path="res://scenes/platform/platform.gd" id="1_k5giw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66mwc"]
+atlas = ExtResource("1_7ca02")
+region = Rect2(560, 160, 160, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06wpb"]
+size = Vector2(150, 75)
+
+[node name="Platform" type="StaticBody2D"]
+z_index = -9
+script = ExtResource("1_k5giw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_66mwc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_physics_priority = -1
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_06wpb")
+one_way_collision = true

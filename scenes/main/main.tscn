@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfsdo6nbqovi"]
+
+[ext_resource type="PackedScene" uid="uid://cl2scnkjv4nwd" path="res://scenes/background/background.tscn" id="1_3bnvd"]
+[ext_resource type="PackedScene" uid="uid://c63vjbrcwylqh" path="res://scenes/player/player.tscn" id="1_ttnx1"]
+[ext_resource type="Script" path="res://scenes/main/bullets.gd" id="3_d584o"]
+[ext_resource type="PackedScene" uid="uid://b2y0xhtplwcxc" path="res://scenes/spawner/spawner.tscn" id="4_r12ic"]
+[ext_resource type="PackedScene" uid="uid://o4myo25pkt4n" path="res://scenes/platform/platform.tscn" id="5_rwl8l"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_3bnvd")]
+
+[node name="Player" parent="." instance=ExtResource("1_ttnx1")]
+position = Vector2(941, 680)
+
+[node name="Bullets" type="Node2D" parent="."]
+script = ExtResource("3_d584o")
+
+[node name="Spawner" parent="." instance=ExtResource("4_r12ic")]
+
+[node name="Platform" parent="Spawner" instance=ExtResource("5_rwl8l")]
+position = Vector2(2766, 1160)
